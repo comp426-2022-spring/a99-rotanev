@@ -1,4 +1,4 @@
-# a99 Final Project - rotanev
+# a99 Final Project
 
 ## UPDATE
 
