@@ -76,3 +76,46 @@ span {
   border-radius: 5px;
   border: 1px solid black;
 }
+
+.app__meals__container{
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.app__meals__container__wrapper{
+  height: auto;
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.app__meals__container__wrapper__inner{
+  width: 50%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1 px solid rgba(0,0,0,0.2);
+  margin: 10px 0;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 800;
+  border-radius: 5;
+}
+
+.btn__delete__meal{
+  padding: 5px;
+  outline: none;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  background: red;
+  border-radius: 5px;
+  border: 1px solid #000;
+}

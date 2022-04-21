@@ -30,6 +30,12 @@ const App = () => {
     setCalories(0)
   };
 
+  const deleteMealHandler = (id) => {
+    const oldMeals = [...meals];
+    const newMeals = oldMeals.filter((meal)=>meal.id !== id);
+    setMeals(newMeals);
+  }
+
   return (
     <div className="App">
       <AppBar />
@@ -40,7 +46,7 @@ const App = () => {
       setCalories={setCalories}/>
 
       <div className='app__meals__container'>
-        <AppMealsList meals={meals}/>
+        <AppMealsList meals={meals} deleteMealHandler={deleteMealHandler}/>
       </div>
       
     </div>
