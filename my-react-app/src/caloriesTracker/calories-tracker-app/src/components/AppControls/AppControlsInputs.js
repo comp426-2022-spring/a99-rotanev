@@ -1,6 +1,11 @@
 import React from 'react'
 
-const AppControlsInputs = () => {
+const AppControlsInputs = ({addMealsHandler}) => {
+
+    const onAddMealsClick = ()=> {
+        addMealsHandler();
+    }
+
     return (
         <div className="app__controls">
             <div className="app__controls__inputs">
@@ -11,7 +16,7 @@ const AppControlsInputs = () => {
                 <input type="number"
                     placeholder="Calories"
                 />
-                <button>Add Meal</button>
+                <button onClick={onAddMealsClick}>Add Meal</button>
             </div>
         </div>
     )
