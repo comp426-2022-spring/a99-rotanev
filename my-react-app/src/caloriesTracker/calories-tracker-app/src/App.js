@@ -12,7 +12,21 @@ const App = () => {
   const[openModal, setOpenModal] = useState(false);
 
   const addMealsHandler = () => {
-    console.log("meal added");
+    const oldMeals = [...meals];
+    const meal = {
+      mealName,
+      calories,
+      id: Math.floor(Math.random()*1000),
+    };
+
+    const newMeals = oldMeals.concat(meal);
+    if(calories <= 0 || mealName == "") {
+      alert("must not be empty");
+    } else {
+      setMeals(newMeals)
+    }
+    setMealName("")
+    setCalories(0)
   };
 
   return (
@@ -20,7 +34,9 @@ const App = () => {
       <AppBar />
       <AppControlsCounter />
       <AppControlsDelete />
-      <AppControlsInputs addMealsHandler ={addMealsHandler} />
+      <AppControlsInputs addMealsHandler ={addMealsHandler} mealName={mealName} calories={calories}
+      setMealName={setMealName}
+      setCalories={setCalories}/>
     </div>
   );
 }
