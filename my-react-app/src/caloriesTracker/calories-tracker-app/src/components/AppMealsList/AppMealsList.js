@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AppMealsList = ([meals]) => {
+const AppMealsList = ({meals}) => {
     return (
         <div className='app__meals__container__wrapper'>
             {meals.map((meal,index)=>(
