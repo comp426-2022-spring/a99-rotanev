@@ -4,7 +4,7 @@ const AppBar = () => {
   return (
     <div className = "app__navbar">
         <h1>
-            Calories Tracker <span>App</span>
+            <span>Carolina</span> Calories
         </h1>
     </div>
   )

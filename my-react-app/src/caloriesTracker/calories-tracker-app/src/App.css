@@ -18,7 +18,7 @@
 }
 
 span {
-  color: red;
+  color: #4B9CD3;
 }
 
 .app__controls__counter {
@@ -30,11 +30,12 @@ span {
   position: fixed;
   top: 100px;
   right: 30px;
+  height: 10vh;
 }
 
 .btn__delete__all {
   font-size: 18px;
-  background: red;
+  background: #4B9CD3;
   color: #fff;
   outline: none;
   padding: 5px;
@@ -70,7 +71,7 @@ span {
   width: 25%;
   text-align: center;
   color: white;
-  background: red;
+  background: #4B9CD3;
   margin: 10px auto;
   font-size: 18px;
   border-radius: 5px;
@@ -115,7 +116,7 @@ span {
   text-align: center;
   font-size: 18px;
   color: #fff;
-  background: red;
+  background: #4B9CD3;
   border-radius: 5px;
   border: 1px solid #000;
 }
@@ -144,7 +145,7 @@ span {
   outline: none;
   text-align: center;
   font-size: 18px;
-  background: red;
+  background: #4B9CD3;
   color: white;
   border-radius: 5px;
   border: 1px solid white;
