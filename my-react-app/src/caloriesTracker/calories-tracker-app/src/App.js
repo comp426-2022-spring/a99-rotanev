@@ -24,6 +24,7 @@ const App = () => {
     };
 
     const newMeals = oldMeals.concat(meal);
+
     if(calories <= 0 || mealName == "") {
       setOpenModal(true);
     } else {
