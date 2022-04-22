@@ -119,3 +119,34 @@ span {
   border-radius: 5px;
   border: 1px solid #000;
 }
+
+.app__modal{
+  width: 300px;
+  height: 250px;
+  background: #f4f4f4;
+  border: 1px solid rgba(0,0,0,0.5);
+  border-radius: 5px;
+  position: absolute;
+  color: #000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 5px;
+}
+
+.btn__close__modal{
+  padding: 5px;
+  outline: none;
+  text-align: center;
+  font-size: 18px;
+  background: red;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid white;
+  width: 90%;
+}
