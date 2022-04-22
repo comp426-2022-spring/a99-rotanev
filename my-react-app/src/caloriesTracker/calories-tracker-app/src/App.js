@@ -6,15 +6,17 @@ import AppControlsDelete from './components/AppControls/AppControlsDelete';
 import AppControlsInputs from './components/AppControls/AppControlsInputs';
 import AppMealsList from './components/AppMealsList/AppMealsList';
 import AppModal from './components/AppModal/AppModal';
+import AppMealsFilter from './components/AppMealsFilter/AppMealsFilter';
 
 const App = () => {
   const[meals, setMeals] = useState([]);
   const[mealName, setMealName] = useState("");
   const[calories, setCalories] = useState(0);
   const[openModal, setOpenModal] = useState(false);
+  const[selectedFilter, setSelectedFilter] = useState("");
 
   const addMealsHandler = () => {
-    const oldMeals = [...meals];
+    const oldMeals = meals ? [...meals] : [];
     const meal = {
       mealName,
       calories,
@@ -25,7 +27,8 @@ const App = () => {
     if(calories <= 0 || mealName == "") {
       setOpenModal(true);
     } else {
-      setMeals(newMeals)
+      setMeals(newMeals);
+      localStorage.setItem("meals",JSON.stringify(newMeals));
     }
     setMealName("")
     setCalories(0)
@@ -35,13 +38,33 @@ const App = () => {
     const oldMeals = [...meals];
     const newMeals = oldMeals.filter((meal)=>meal.id !== id);
     setMeals(newMeals);
+    localStorage.setItem("meals",JSON.stringify(newMeals));
   }
 
   const deleteAllMeals = () => {
     setMeals([]);
+    localStorage.clear();
   }
 
-  const total = meals.map((meal)=>meal.calories).reduce((acc, value)=>acc+ +value, 0);
+  const total = meals !== null ? meals
+  .map((meal)=>meal.calories)
+  .reduce((acc, value)=>acc+ +value, 0) : 0;
+
+  useEffect(()=>{
+    const oldState = [...meals];
+    if(selectedFilter === "Ascending"){
+      const ascendingMeals = oldState.sort((a, b)=>a.calories - b.calories);
+      setMeals(ascendingMeals);
+    }else if(selectedFilter === "Descending"){
+      const descendingMeals = oldState.sort((a, b)=>b.calories - a.calories);
+      setMeals(descendingMeals);
+    }
+  },[selectedFilter]);
+
+  useEffect(()=>{
+    const localStorageMeals = JSON.parse(localStorage.getItem("meals"));
+    setMeals(localStorageMeals);
+  }, [setMeals]);
 
   return (
     <div className="App">
@@ -54,6 +77,7 @@ const App = () => {
       setCalories={setCalories}/>
 
       <div className='app__meals__container'>
+        <AppMealsFilter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
         <AppMealsList meals={meals} deleteMealHandler={deleteMealHandler}/>
       </div>
       

@@ -150,3 +150,10 @@ span {
   border: 1px solid white;
   width: 90%;
 }
+
+.app__meals__container__select select{
+  outline: none;
+  padding: 5px;
+  font-size: 18px;
+  border: 1px solid rgba(0 0, 0, 0.2);
+}
