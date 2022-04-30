@@ -1,16 +1,19 @@
-# a99 Final Project
+# a99 Final Project - Carolina Calories
 
-## UPDATE
+## Overview
 
-You don't need to accept this assignment since you are already assigned to teams. So, there is not assignment invite link for a99.
+Carolina Calories is an app designed to help users keep track of how many calories in their meals.
 
-## Summary 
+## Inspiration
 
-COMP426 final project template repository.
-All your code and documentation goes here.
-Change this text to be a brief description of your final project.
-Put the name of your project in the header above.
-You will change everything below to be the main technical documentation, as outlined below.
+Globally, malnutrition is constantly prevalant. In 2018, "821 million people suffered from hunger, food insecurity, and malnutrition globally" [(Source)](https://sph.umich.edu/pursuit/2019posts/malnutrition-in-humanitarian-crises.html#:~:text=More%20than%20821%20million%20people,and%20malnutrition%20globally%20in%202018.&text=Malnutrition%20is%20characterized%20by%20deficiencies,general%20undernutrition%2C%20or%20general%20overnutrition.&text=In%20cases%20of%20disasters%2C%20we%20focus%20on%20undernutrition%20and%20nutrient%20deficits.). 
+
+Inspired by this public health crisis, we decided to create a calorie counter so users can keep track of how many calories they are eating in a day.
+
+You can find more information about our project here:
+* [Team Roles] ()
+* [Project Features] ()
+* [Project Timeline] ()
 
 ## First steps
 
