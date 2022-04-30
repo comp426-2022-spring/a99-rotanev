@@ -42,7 +42,7 @@ const AppSignUp = ({signUp,firstname,lastname,email,birthday,password,confirmpas
             </div>
 
             <div className="one">
-            <input onClick={onSignUpSubmitClick} type="submit"/>
+            <input onClick={onSignUpSubmitClick} type="submit" value="Sign Up!"/>
             </div>
         </form>
       </div>
