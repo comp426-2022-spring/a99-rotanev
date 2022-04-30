@@ -2,7 +2,7 @@
   position: relative;
   height: 100vh;
   width: 100%;
-  background: #f4f4f4f4;
+  background: #9eb2be;
   overflow-x: hidden;
 }
 
@@ -18,7 +18,7 @@
 }
 
 span {
-  color: #4B9CD3;
+  color: #ffffff;
 }
 
 .app__controls__counter {
@@ -28,8 +28,8 @@ span {
 
 .app__controls__delete {
   position: fixed;
-  top: 100px;
-  right: 30px;
+  top: 150px;
+  left: 30px;
   height: 10vh;
 }
 
