@@ -9,6 +9,7 @@ import AppMealsList from './components/AppMealsList/AppMealsList';
 import AppModal from './components/AppModal/AppModal';
 import AppMealsFilter from './components/AppMealsFilter/AppMealsFilter';
 import AppSignUp from './components/AppSignUp/AppSignUp';
+import AppLogIn from './components/AppLogIn/AppLogIn';
 
 const App = () => {
   const loggedIn=true;

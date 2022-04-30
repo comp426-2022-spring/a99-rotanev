@@ -2,7 +2,7 @@ import React from 'react'
 
 const AppLogIn = () => {
     return (
-      <div className = "app__signup">
+      <div className = "app__login">
           <h1>Log In</h1>
           <form>
           <label><b>Name</b></label>
