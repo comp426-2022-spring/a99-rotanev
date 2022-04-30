@@ -158,3 +158,28 @@ span {
   font-size: 18px;
   border: 1px solid rgba(0 0, 0, 0.2);
 }
+
+.app__navigation_bar{
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  flex-direction: row;
+}
+
+.app__navigation_bar a{
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  flex-direction: row;
+}
+
+.app__navigation_bar a:hover, a:visited{
+  text-decoration: underline;
+  color: black;
+  background-color: #4B9CD3;
+}
