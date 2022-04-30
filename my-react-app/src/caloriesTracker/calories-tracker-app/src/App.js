@@ -14,15 +14,25 @@ import AppLogIn from './components/AppLogIn/AppLogIn';
 const App = () => {
   const loggedIn=true;
   const currentPage="signup";
+
+/*
   const[user, setUser] = useState([]);
+
+  const[firstname, setFirstName] = useState("");
+  const[lastname, setLastName] = useState("");
+  const[email, setEmail] = useState("");
+  const[birthday, setBirthday] = useState("");
+  const[password, setPassword] = useState("");
+  const[confirmpassword, setConfirmPassword] = useState("");
+*/
   const[meals, setMeals] = useState([]);
   const[mealName, setMealName] = useState("");
   const[calories, setCalories] = useState(0);
   const[openModal, setOpenModal] = useState(false);
   const[selectedFilter, setSelectedFilter] = useState("");
 
+  // Functions
   const addMealsHandler = () => {
-    // Functions
     const oldMeals = meals ? [...meals] : [];
     const meal = {
       mealName,
@@ -53,7 +63,7 @@ const App = () => {
     setMeals([]);
     localStorage.clear();
   }
-  
+/*
   const signUp = () => {
     const user = {
       firstname, 
@@ -63,8 +73,9 @@ const App = () => {
       password, 
       confirmpassword,
     }
+    console.log("user:" + user.firstname);
   }
-
+*/
   const total = meals !== null ? meals
   .map((meal)=>meal.calories)
   .reduce((acc, value)=>acc+ +value, 0) : 0;
@@ -80,10 +91,16 @@ const App = () => {
     }
   },[selectedFilter]);
 
+  /*
   useEffect(()=>{
     const localStorageMeals = JSON.parse(localStorage.getItem("meals"));
     setMeals(localStorageMeals);
   }, [setMeals]);
+
+  useEffect(()=>{
+    signUp();
+  }, [setUser]);
+*/
 
   // Returns
   if(currentPage=="signup"){
@@ -91,7 +108,22 @@ const App = () => {
       <div className="App">
         <AppBar />
         <AppNavBar />
-        <AppSignUp />
+        <AppSignUp 
+        /*
+          firstname={firstname} 
+          lastname={lastname} 
+          email={email} 
+          birthday={birthday} 
+          password={password} 
+          confirmpassword={confirmpassword}
+          setFirstName={setFirstName}
+          setLastName={setLastName}
+          setEmail={setEmail}
+          setBirthday={setBirthday}
+          setPassword={setPassword}
+          setConfirmPassword={setConfirmPassword}
+        */
+        />
         
       </div>
     );
