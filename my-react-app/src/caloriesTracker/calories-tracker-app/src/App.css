@@ -28,7 +28,7 @@ span {
 
 .app__controls__delete {
   position: fixed;
-  top: 150px;
+  top: 180px;
   left: 30px;
   height: 10vh;
 }
@@ -189,6 +189,11 @@ span {
 .app__navigation_bar a:visited{
   color: black;
   background-color: white;
+}
+
+.app__navigation_bar a:active{
+  color: white;
+  background-color: #00539B;
 }
 
 .formbox {

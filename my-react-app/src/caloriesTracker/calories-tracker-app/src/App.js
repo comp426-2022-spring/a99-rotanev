@@ -13,7 +13,7 @@ import AppLogIn from './components/AppLogIn/AppLogIn';
 
 const App = () => {
   const loggedIn=true;
-  const currentPage="signup";
+  const currentPage="caloriecounter";
   const firstname=null;
   const[meals, setMeals] = useState([]);
   const[mealName, setMealName] = useState("");
