@@ -8,7 +8,7 @@ import AppControlsInputs from './components/AppControls/AppControlsInputs';
 import AppMealsList from './components/AppMealsList/AppMealsList';
 import AppModal from './components/AppModal/AppModal';
 import AppMealsFilter from './components/AppMealsFilter/AppMealsFilter';
-
+import AppSignUp from './components/AppSignUp/AppSignUp';
 
 const App = () => {
   const loggedIn=true;
@@ -78,10 +78,12 @@ const App = () => {
       <div className="App">
         <AppBar />
         <AppNavBar />
+        <AppSignUp />
+
       </div>
     );
   }
-  else{
+  else if(currentPage=="caloriecounter"){
     return (
       <div className="App">
         <AppBar />
