@@ -2,7 +2,7 @@
   position: relative;
   height: 100vh;
   width: 100%;
-  background: #9eb2be;
+  background: #adc1cd;
   overflow-x: hidden;
 }
 
@@ -189,4 +189,21 @@ span {
 .app__navigation_bar a:visited{
   color: black;
   background-color: white;
+}
+
+.formbox {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.signup{
+  text-align: center;
+}
+
+.one{
+  margin: 15px;
 }
