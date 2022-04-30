@@ -1,6 +1,7 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import AppBar from './components/AppBar/AppBar';
+import AppNavBar from './components/AppNavBar/AppNavBar';
 import AppControlsCounter from './components/AppControls/AppControlsCounter';
 import AppControlsDelete from './components/AppControls/AppControlsDelete';
 import AppControlsInputs from './components/AppControls/AppControlsInputs';
@@ -8,7 +9,10 @@ import AppMealsList from './components/AppMealsList/AppMealsList';
 import AppModal from './components/AppModal/AppModal';
 import AppMealsFilter from './components/AppMealsFilter/AppMealsFilter';
 
+
 const App = () => {
+  const loggedIn=true;
+  const currentPage="login";
   const[meals, setMeals] = useState([]);
   const[mealName, setMealName] = useState("");
   const[calories, setCalories] = useState(0);
@@ -16,6 +20,7 @@ const App = () => {
   const[selectedFilter, setSelectedFilter] = useState("");
 
   const addMealsHandler = () => {
+    // Functions
     const oldMeals = meals ? [...meals] : [];
     const meal = {
       mealName,
@@ -67,23 +72,32 @@ const App = () => {
     setMeals(localStorageMeals);
   }, [setMeals]);
 
-  return (
-    <div className="App">
-      <AppBar />
-      { openModal ? <AppModal setOpenModal={setOpenModal} /> : ""}
-      <AppControlsCounter total={total} />
-      <AppControlsDelete deleteAllMeals={deleteAllMeals}/>
-      <AppControlsInputs addMealsHandler ={addMealsHandler} mealName={mealName} calories={calories}
-      setMealName={setMealName}
-      setCalories={setCalories}/>
-
-      <div className='app__meals__container'>
-        <AppMealsFilter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
-        <AppMealsList meals={meals} deleteMealHandler={deleteMealHandler}/>
+  // Returns
+  if(loggedIn){
+    return(
+      <h1>Hi</h1>
+    );
+  }
+  else{
+    return (
+      <div className="App">
+        <AppBar />
+        <AppNavBar />
+        { openModal ? <AppModal setOpenModal={setOpenModal} /> : ""}
+        <AppControlsCounter total={total} />
+        <AppControlsDelete deleteAllMeals={deleteAllMeals}/>
+        <AppControlsInputs addMealsHandler ={addMealsHandler} mealName={mealName} calories={calories}
+        setMealName={setMealName}
+        setCalories={setCalories}/>
+  
+        <div className='app__meals__container'>
+          <AppMealsFilter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
+          <AppMealsList meals={meals} deleteMealHandler={deleteMealHandler}/>
+        </div>
+        
       </div>
-      
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
