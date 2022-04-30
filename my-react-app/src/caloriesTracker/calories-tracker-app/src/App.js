@@ -93,7 +93,7 @@ const App = () => {
       <div className="App">
         <AppBar />
         <AppNavBar />
-        <AppLogin />
+        <AppLogIn />
       </div>
     );
   }
