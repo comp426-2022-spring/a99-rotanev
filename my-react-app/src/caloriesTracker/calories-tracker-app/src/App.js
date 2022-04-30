@@ -13,6 +13,7 @@ import AppSignUp from './components/AppSignUp/AppSignUp';
 const App = () => {
   const loggedIn=true;
   const currentPage="signup";
+  const firstname=null;
   const[meals, setMeals] = useState([]);
   const[mealName, setMealName] = useState("");
   const[calories, setCalories] = useState(0);
@@ -51,6 +52,10 @@ const App = () => {
     setMeals([]);
     localStorage.clear();
   }
+  
+  const signUp = () => {
+
+  }
 
   const total = meals !== null ? meals
   .map((meal)=>meal.calories)
@@ -79,7 +84,15 @@ const App = () => {
         <AppBar />
         <AppNavBar />
         <AppSignUp />
-
+      </div>
+    );
+  }
+  else if(currentPage=="login"){
+    return (
+      <div className="App">
+        <AppBar />
+        <AppNavBar />
+        <AppLogin />
       </div>
     );
   }
