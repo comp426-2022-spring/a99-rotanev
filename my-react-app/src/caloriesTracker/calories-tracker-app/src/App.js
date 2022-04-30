@@ -13,8 +13,8 @@ import AppLogIn from './components/AppLogIn/AppLogIn';
 
 const App = () => {
   const loggedIn=true;
-  const currentPage="caloriecounter";
-  const firstname=null;
+  const currentPage="signup";
+  const[user, setUser] = useState([]);
   const[meals, setMeals] = useState([]);
   const[mealName, setMealName] = useState("");
   const[calories, setCalories] = useState(0);
@@ -55,7 +55,14 @@ const App = () => {
   }
   
   const signUp = () => {
-
+    const user = {
+      firstname, 
+      lastname, 
+      email,
+      birthday,
+      password, 
+      confirmpassword,
+    }
   }
 
   const total = meals !== null ? meals
@@ -85,6 +92,7 @@ const App = () => {
         <AppBar />
         <AppNavBar />
         <AppSignUp />
+        
       </div>
     );
   }
