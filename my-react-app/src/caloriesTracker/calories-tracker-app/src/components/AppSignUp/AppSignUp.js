@@ -48,4 +48,5 @@ const AppSignUp = ({signUp,firstname,lastname,email,birthday,password,confirmpas
       </div>
     </div>
   )
+}
 export default AppSignUp;
