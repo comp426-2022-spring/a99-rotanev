@@ -78,7 +78,6 @@ const App = () => {
       <div className="App">
         <AppBar />
         <AppNavBar />
-        <h1>Hi</h1>
       </div>
     );
   }
