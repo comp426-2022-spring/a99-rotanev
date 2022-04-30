@@ -12,7 +12,7 @@ import AppMealsFilter from './components/AppMealsFilter/AppMealsFilter';
 
 const App = () => {
   const loggedIn=true;
-  const currentPage="login";
+  const currentPage="signup";
   const[meals, setMeals] = useState([]);
   const[mealName, setMealName] = useState("");
   const[calories, setCalories] = useState(0);
@@ -73,9 +73,13 @@ const App = () => {
   }, [setMeals]);
 
   // Returns
-  if(loggedIn){
-    return(
-      <h1>Hi</h1>
+  if(currentPage=="signup"){
+    return (
+      <div className="App">
+        <AppBar />
+        <AppNavBar />
+        <h1>Hi</h1>
+      </div>
     );
   }
   else{
