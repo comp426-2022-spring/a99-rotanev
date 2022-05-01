@@ -18,6 +18,7 @@ root.render(
       <Route path="/login" element={<AppLogIn/>}></Route>
       <Route path="/" element={<AppSignUp/>}></Route>
       <Route path="/caloriecounter" element={<Calories/>}></Route>
+      <Route path="/settings" element={<Calories/>}></Route>
     </Routes>
     </div>
   </Router>
