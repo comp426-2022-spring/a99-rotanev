@@ -6,7 +6,7 @@ var md5 = require("md5")
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var HTTP_PORT = 5000 
+var HTTP_PORT = 3000
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -33,13 +33,16 @@ app.get("/app/", (req, res, next) => {
 //DO ALL OF THIS
 // Define other CRUD API endpoints using express.js and better-sqlite3
 // CREATE a new user (HTTP method POST) at endpoint /app/new/
-app.post("/app/new/user", (req, res, next) => {
+app.post("/app/adduser", (req, res, next) => {
     let data = {
-        user: req.body.username,
-        pass: req.body.password
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        birthday: req.body.birthday,
+        password: req.body.password
     }
-    const stmt = db.prepare('INSERT INTO userinfo (username, password) VALUES (?, ?)')
-    const info = stmt.run(data.user, data.pass)
+    const stmt = db.prepare('INSERT INTO userinfo (firstname, lastname, email, birthday, password) VALUES (?, ?, ?, ?, ?)')
+    const info = stmt.run(data.firstname, data.lastname, data.email, data.birthday, data.password);
     res.status(200).json(info)
 });
 // READ a list of users (HTTP method GET) at endpoint /app/users/
@@ -80,6 +83,20 @@ app.delete("/app/delete/user/:id", (req, res) => {
     const info = stmt.run(req.params.id)
     res.status(200).json(info)
 });
+
+app.post("/app/emailexists/", (req, res, next) => {
+    const email = req.body.email;
+    const psw = req.body.psw;
+    let stmt = db
+      .prepare(`SELECT COUNT(*) AS COUNT FROM user WHERE email = '${email}'`)
+      .all();
+    if (stmt[0]["COUNT"] == 0) {
+      res.status(200).json("account doesn't exist");
+    } else {
+        res.status("account found!");
+    }
+  });
+
 // Default response for any other request
 app.use(function(req, res){
 	res.json({"message":"Endpoint not found. (404)"});
