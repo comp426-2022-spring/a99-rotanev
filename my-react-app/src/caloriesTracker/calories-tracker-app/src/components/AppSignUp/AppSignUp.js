@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import "../../App.css";
+import AppNavBarLog from '../AppNavBar/AppNavBarLog';
 
 const AppSignUp = ({signUp, setCurrentPage,
     firstname,lastname,email,birthday,password,confirmpassword,
@@ -11,6 +13,7 @@ const AppSignUp = ({signUp, setCurrentPage,
 
   return (
     <div className = "app__signup">
+      <AppNavBarLog/>
         <h1 className = "signup">Sign Up</h1>
         <div className = "formbox">
         <form onSubmit={(e)=>onSignUpSubmitClick(e)}>    

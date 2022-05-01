@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './App.css';
-import AppNavBar from './components/AppNavBar/AppNavBar';
 import AppBar from './components/AppBar/AppBar';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import AppSignUp from './components/AppSignUp/AppSignUp';
 import AppLogIn from './components/AppLogIn/AppLogIn';
 import Calories from './components/CalorieCounter/CalorieApp';
+import AppNavBarLog from './components/AppNavBar/AppNavBarLog';
+import AppNavBarLogged from './components/AppNavBar/AppNavBarLogged';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,10 +16,9 @@ root.render(
   <React.StrictMode>
   <Router>
     <AppBar />
-    <AppNavBar />
     <Routes>
       <Route path="/login" element={<AppLogIn/>}></Route>
-      <Route path="/signup" element={<AppSignUp/>}></Route>
+      <Route path="/" element={<AppSignUp/>}></Route>
       <Route path="/caloriecounter" element={<Calories/>}></Route>
     </Routes>
   </Router>

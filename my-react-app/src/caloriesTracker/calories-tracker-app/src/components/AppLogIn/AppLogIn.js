@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import "../../App.css";
+import AppNavBarLog from '../AppNavBar/AppNavBarLog';
 
 const AppLogIn = ({logIn, email, password}) => {
 
@@ -8,7 +10,8 @@ const AppLogIn = ({logIn, email, password}) => {
 
   return (
     <div className = "app__login">
-        <h1 className = "login">Log In</h1>
+      <AppNavBarLog/>
+        <center><h1 className = "login">Log In</h1></center>
         <div className = "formbox">
         <form>    
             <div className="one">

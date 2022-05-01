@@ -11,8 +11,6 @@ import AppMealsFilter from './components/AppMealsFilter/AppMealsFilter';
 import AppSignUp from './components/AppSignUp/AppSignUp';
 import AppLogIn from './components/AppLogIn/AppLogIn';
 
-
-
 const App = () => {
   const loggedIn=true;
   const [currentPage, setCurrentPage] = useState("signup");
