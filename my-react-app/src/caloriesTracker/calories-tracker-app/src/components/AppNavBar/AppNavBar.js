@@ -3,10 +3,9 @@ import React from 'react'
 const AppNavBar = () => {
   return (
     <div className = "app__navigation_bar">
-        <a href='../../pages/index.html'>Home</a>
-        <a>Calorie Counter</a>
-        <a>Login</a>
-        <a>Sign Up</a>
+        <a href="/caloriecounter">Calorie Counter</a>
+        <a href="/login">Login</a>
+        <a href="/signup">Sign Up</a>
     </div>
   )
 }

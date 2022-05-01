@@ -11,20 +11,20 @@ import AppMealsFilter from './components/AppMealsFilter/AppMealsFilter';
 import AppSignUp from './components/AppSignUp/AppSignUp';
 import AppLogIn from './components/AppLogIn/AppLogIn';
 
+
+
 const App = () => {
   const loggedIn=true;
-  const currentPage="signup";
+  const [currentPage, setCurrentPage] = useState("signup");
 
-/*
-  const[user, setUser] = useState([]);
 
-  const[firstname, setFirstName] = useState("");
-  const[lastname, setLastName] = useState("");
-  const[email, setEmail] = useState("");
-  const[birthday, setBirthday] = useState("");
-  const[password, setPassword] = useState("");
-  const[confirmpassword, setConfirmPassword] = useState("");
-*/
+  const [firstname, setFirstName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
+
   const[meals, setMeals] = useState([]);
   const[mealName, setMealName] = useState("");
   const[calories, setCalories] = useState(0);
@@ -32,6 +32,63 @@ const App = () => {
   const[selectedFilter, setSelectedFilter] = useState("");
 
   // Functions
+  function renderSwitch(page){
+    switch(page){
+      case "login":
+        return (
+          <div className="App">
+            <AppBar />
+            <AppNavBar 
+              setCurrentPage={setCurrentPage}
+            />
+            <AppSignUp
+              signUp={signUp}
+              firstname={firstname} setFirstName={setFirstName} 
+              lastname={lastname} setLastName={setLastName} 
+              email={email} setEmail={setEmail}
+              birthday={birthday} setBirthday={setBirthday} 
+              password={password} setPassword={setPassword} 
+              confirmpassword={confirmpassword} setConfirmPassword={setConfirmPassword}
+              setCurrentPage={setCurrentPage}
+            />
+          </div>
+        );
+ 
+      case "signup":
+        return (
+          <div className="App">
+            <AppBar />
+            <AppNavBar 
+              setCurrentPage={setCurrentPage}
+            />
+            <AppLogIn />
+          </div>
+        );
+       
+      case "caloriecounter":
+        return (
+          <div className="App">
+            <AppBar />
+            <AppNavBar 
+              setCurrentPage={setCurrentPage}
+            />
+            { openModal ? <AppModal setOpenModal={setOpenModal} /> : ""}
+            <AppControlsCounter total={total} />
+            <AppControlsDelete deleteAllMeals={deleteAllMeals}/>
+            <AppControlsInputs addMealsHandler ={addMealsHandler} mealName={mealName} calories={calories}
+            setMealName={setMealName}
+            setCalories={setCalories}/>
+     
+            <div className='app__meals__container'>
+              <AppMealsFilter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
+              <AppMealsList meals={meals} deleteMealHandler={deleteMealHandler}/>
+            </div>
+           
+          </div>
+        );
+      }
+  }
+
   const addMealsHandler = () => {
     const oldMeals = meals ? [...meals] : [];
     const meal = {
@@ -63,19 +120,16 @@ const App = () => {
     setMeals([]);
     localStorage.clear();
   }
-/*
-  const signUp = () => {
-    const user = {
-      firstname, 
-      lastname, 
-      email,
-      birthday,
-      password, 
-      confirmpassword,
+
+  const signUp = (setCurrentPage) =>{
+    if(password==confirmpassword){
+      setCurrentPage("login");
     }
-    console.log("user:" + user.firstname);
+    console.log("email went through")
+
   }
-*/
+
+
   const total = meals !== null ? meals
   .map((meal)=>meal.calories)
   .reduce((acc, value)=>acc+ +value, 0) : 0;
@@ -91,72 +145,7 @@ const App = () => {
     }
   },[selectedFilter]);
 
-  /*
-  useEffect(()=>{
-    const localStorageMeals = JSON.parse(localStorage.getItem("meals"));
-    setMeals(localStorageMeals);
-  }, [setMeals]);
-
-  useEffect(()=>{
-    signUp();
-  }, [setUser]);
-*/
-
-  // Returns
-  if(currentPage=="signup"){
-    return (
-      <div className="App">
-        <AppBar />
-        <AppNavBar />
-        <AppSignUp 
-        /*
-          firstname={firstname} 
-          lastname={lastname} 
-          email={email} 
-          birthday={birthday} 
-          password={password} 
-          confirmpassword={confirmpassword}
-          setFirstName={setFirstName}
-          setLastName={setLastName}
-          setEmail={setEmail}
-          setBirthday={setBirthday}
-          setPassword={setPassword}
-          setConfirmPassword={setConfirmPassword}
-        */
-        />
-        
-      </div>
-    );
-  }
-  else if(currentPage=="login"){
-    return (
-      <div className="App">
-        <AppBar />
-        <AppNavBar />
-        <AppLogIn />
-      </div>
-    );
-  }
-  else if(currentPage=="caloriecounter"){
-    return (
-      <div className="App">
-        <AppBar />
-        <AppNavBar />
-        { openModal ? <AppModal setOpenModal={setOpenModal} /> : ""}
-        <AppControlsCounter total={total} />
-        <AppControlsDelete deleteAllMeals={deleteAllMeals}/>
-        <AppControlsInputs addMealsHandler ={addMealsHandler} mealName={mealName} calories={calories}
-        setMealName={setMealName}
-        setCalories={setCalories}/>
-  
-        <div className='app__meals__container'>
-          <AppMealsFilter selectedFilter={selectedFilter} setSelectedFilter={setSelectedFilter} />
-          <AppMealsList meals={meals} deleteMealHandler={deleteMealHandler}/>
-        </div>
-        
-      </div>
-    );
-  }
+  return renderSwitch(currentPage)
 }
 
 export default App;
