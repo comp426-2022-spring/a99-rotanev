@@ -183,6 +183,7 @@ span {
 .app__navigation_bar a:visited{
   color: black;
   background-color: white;
+  /*background-color: #adc1cd;*/
 }
 
 .app__navigation_bar a:hover{

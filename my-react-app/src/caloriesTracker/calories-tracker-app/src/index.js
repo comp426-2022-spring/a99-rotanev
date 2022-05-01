@@ -12,12 +12,14 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
   <Router>
+    <div className='App'>
     <AppBar />
     <Routes>
       <Route path="/login" element={<AppLogIn/>}></Route>
       <Route path="/" element={<AppSignUp/>}></Route>
       <Route path="/caloriecounter" element={<Calories/>}></Route>
     </Routes>
+    </div>
   </Router>
     {/* <App /> */}
   </React.StrictMode>
