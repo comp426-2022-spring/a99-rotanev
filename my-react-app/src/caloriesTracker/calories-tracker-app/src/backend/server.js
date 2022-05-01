@@ -6,7 +6,7 @@ var md5 = require("md5")
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var HTTP_PORT = 3000
+var HTTP_PORT = 5000
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -26,6 +26,7 @@ const server = app.listen(HTTP_PORT, () => {
 
 // READ (HTTP method GET) at root endpoint /app/
 app.get("/app/", (req, res, next) => {
+    console.log("Root endpoint works");
     res.json({"message":"The API works! (200)"});
 	res.status(200);
 });
@@ -33,7 +34,9 @@ app.get("/app/", (req, res, next) => {
 //DO ALL OF THIS
 // Define other CRUD API endpoints using express.js and better-sqlite3
 // CREATE a new user (HTTP method POST) at endpoint /app/new/
-app.post("/app/adduser", (req, res, next) => {
+
+app.post("/app/adduser", (req, res) => {
+    console.log("adduser endpoint reached");
     let data = {
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -41,24 +44,44 @@ app.post("/app/adduser", (req, res, next) => {
         birthday: req.body.birthday,
         password: req.body.password
     }
-    const stmt = db.prepare('INSERT INTO userinfo (firstname, lastname, email, birthday, password) VALUES (?, ?, ?, ?, ?)')
+    const stmt = db.prepare('INSERT INTO user (firstname, lastname, email, birthday, password) VALUES (?, ?, ?, ?, ?)')
     const info = stmt.run(data.firstname, data.lastname, data.email, data.birthday, data.password);
     res.status(200).json(info)
 });
+
+app.post("/app/emailexists/", (req, res, next) => {
+    const email = req.body.email;
+    const psw = req.body.psw;
+    let stmt = db
+      .prepare(`SELECT COUNT(*) AS COUNT FROM user WHERE email = '${email}'`)
+      .all();
+    if (stmt[0]["COUNT"] == 0) {
+        console.log("account doesn't exist");
+      res.status(200).json("account doesn't exist");
+    } else {
+        res.status("account found!");
+    }
+  });
+
+
+
 // READ a list of users (HTTP method GET) at endpoint /app/users/
-app.get("/app/users", (req, res) => {	
+app.get("/app/users/", (req, res, next) => {	
+    console.log("here");
     try {
-        const stmt = db.prepare('SELECT * FROM userinfo').all()
+        const stmt = db.prepare('SELECT * FROM user').all()
         res.status(200).json(stmt)
     } catch {
         console.error(e)
     }
 });
 
+/*
+
 // READ a single user (HTTP method GET) at endpoint /app/user/:id
 app.get("/app/user/:id", (req, res) => {
     try {
-        const stmt = db.prepare('SELECT * FROM userinfo WHERE id = ?').get(req.params.id);
+        const stmt = db.prepare('SELECT * FROM user WHERE id = ?').get(req.params.id);
         res.status(200).json(stmt)
     } catch (e) {
         console.error(e)
@@ -72,30 +95,20 @@ app.patch("/app/update/user/:id", (req, res) => {
         user: req.body.username,
         pass: req.body.password
     }
-    const stmt = db.prepare('UPDATE userinfo SET username = COALESCE(?,username), password = COALESCE(?,password) WHERE id = ?')
+    const stmt = db.prepare('UPDATE user SET username = COALESCE(?,username), password = COALESCE(?,password) WHERE id = ?')
     const info = stmt.run(data.user, data.pass, req.params.id)
     res.status(200).json(info)
 });
 
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
 app.delete("/app/delete/user/:id", (req, res) => {
-    const stmt = db.prepare('DELETE FROM userinfo WHERE id = ?')
+    const stmt = db.prepare('DELETE FROM user WHERE id = ?')
     const info = stmt.run(req.params.id)
     res.status(200).json(info)
 });
+*/
 
-app.post("/app/emailexists/", (req, res, next) => {
-    const email = req.body.email;
-    const psw = req.body.psw;
-    let stmt = db
-      .prepare(`SELECT COUNT(*) AS COUNT FROM user WHERE email = '${email}'`)
-      .all();
-    if (stmt[0]["COUNT"] == 0) {
-      res.status(200).json("account doesn't exist");
-    } else {
-        res.status("account found!");
-    }
-  });
+
 
 // Default response for any other request
 app.use(function(req, res){
