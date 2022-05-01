@@ -22,13 +22,13 @@ span {
 }
 
 .app__controls__counter {
-  position: fixed;
+  position: absolute;
   left: 30px;
 }
 
 .app__controls__delete {
-  position: fixed;
-  top: 180px;
+  position: absolute;
+  top: 120px;
   left: 30px;
   height: 10vh;
 }
