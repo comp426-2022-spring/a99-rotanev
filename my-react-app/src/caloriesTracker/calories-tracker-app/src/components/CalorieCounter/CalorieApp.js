@@ -6,6 +6,7 @@ import AppMealsList from '../AppMealsList/AppMealsList';
 import AppModal from '../AppModal/AppModal';
 import AppMealsFilter from '../AppMealsFilter/AppMealsFilter';
 import "../../App.css";
+import AppNavBarLogged from '../AppNavBar/AppNavBarLogged';
 
 const App = () => {
  
@@ -75,6 +76,7 @@ const App = () => {
       <div className="App">
         {/* <AppBar /> */}
         {/* <AppNavBar /> */}
+        <AppNavBarLogged />
         { openModal ? <AppModal setOpenModal={setOpenModal} /> : ""}
         <AppControlsCounter total={total} />
         <AppControlsDelete deleteAllMeals={deleteAllMeals}/>

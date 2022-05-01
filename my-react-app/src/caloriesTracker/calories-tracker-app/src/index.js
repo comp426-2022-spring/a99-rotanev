@@ -7,12 +7,9 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import AppSignUp from './components/AppSignUp/AppSignUp';
 import AppLogIn from './components/AppLogIn/AppLogIn';
 import Calories from './components/CalorieCounter/CalorieApp';
-import AppNavBarLog from './components/AppNavBar/AppNavBarLog';
-import AppNavBarLogged from './components/AppNavBar/AppNavBarLogged';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  
   <React.StrictMode>
   <Router>
     <AppBar />
