@@ -77,16 +77,14 @@ app.post("/app/accountexists/", (req, res, next) => {
     } else {
         console.log("got in here");
         let stmt = db
-        .prepare(
-            `SELECT COUNT(*) AS COUNT FROM user WHERE email = '${email}' AND password='${password}'`
-        )
+        .prepare(`SELECT COUNT(*) AS COUNT FROM user WHERE email = '${email}' AND password='${password}'`)
         .all();
         if (stmt[0]["COUNT"] == 0) {
-            alert("Your password is invalid!");
-          } else {
-            alert("account found!");
+            res.status(200).json("your password is invalid!");
+        }
+        else {
             res.status(200).json("account found!");
-          }
+        }
     }
   });
 

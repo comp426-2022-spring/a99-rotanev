@@ -13,11 +13,15 @@ const AppLogIn = () => {
       axios.post("http://localhost:5000/app/accountexists/", { email: email, password: password }).then((res) => {
           console.log("now i have done the axios");
           if (res.data == "account found!") {
-            window.location.href = "./login"; 
+            window.location.href = "./caloriecounter"; 
+          }
+          else if(res.data == "your account doesn't exist!"){
+            alert("There is no email with that account. Please sign up!");
+            window.location.href="./";
           }
           else{
-            alert("You do not have an account with this email address. Please sign up for an account!");
-            window.location.href = "./";
+            alert("Wrong password!")
+          }   
             /*axios.post("http://localhost:5000/app/adduser", {
               firstname: firstname,
               lastname: lastname,
@@ -27,7 +31,7 @@ const AppLogIn = () => {
             });
             console.log(window.location.href);
             window.location.href = "./caloriecounter"; */
-          } 
+          
         });
   }
 
