@@ -8,7 +8,6 @@ import axios from "axios";
 const AppSignUp = () => {
 
   const onSignUpSubmitClick = (e) => {
-    console.log("submitted");
     e.preventDefault();
     
     const firstname = e.target.firstname.value;

@@ -51,7 +51,6 @@ app.post("/app/adduser", (req, res) => {
 
 app.post("/app/emailexists/", (req, res, next) => {
     const email = req.body.email;
-    const psw = req.body.psw;
     let stmt = db
       .prepare(`SELECT COUNT(*) AS COUNT FROM user WHERE email = '${email}'`)
       .all();
@@ -63,6 +62,33 @@ app.post("/app/emailexists/", (req, res, next) => {
     }
   });
 
+
+app.post("/app/accountexists/", (req, res, next) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    console.log("start of endpoint");
+    let stmt = db
+      .prepare(`SELECT COUNT(*) AS COUNT FROM user WHERE email = '${email}'`)
+      .all();
+    if (stmt[0]["COUNT"] == 0) {
+        console.log("account doesn't exist");
+        alert("account doesn't exist!");
+      res.status(200).json("account doesn't exist");
+    } else {
+        console.log("got in here");
+        let stmt = db
+        .prepare(
+            `SELECT COUNT(*) AS COUNT FROM user WHERE email = '${email}' AND password='${password}'`
+        )
+        .all();
+        if (stmt[0]["COUNT"] == 0) {
+            alert("Your password is invalid!");
+          } else {
+            alert("account found!");
+            res.status(200).json("account found!");
+          }
+    }
+  });
 
 
 // READ a list of users (HTTP method GET) at endpoint /app/users/
