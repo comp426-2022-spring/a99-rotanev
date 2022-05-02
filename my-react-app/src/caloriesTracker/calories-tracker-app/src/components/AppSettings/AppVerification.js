@@ -8,9 +8,7 @@ const AppSettings = (/*{signUp, setCurrentPage,
 
   const onVerificationSubmitClick = (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-
-    
+    const email = e.target.email.value;    
   }
 
   return (
