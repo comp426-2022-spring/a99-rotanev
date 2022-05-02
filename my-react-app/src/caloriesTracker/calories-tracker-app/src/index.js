@@ -7,6 +7,8 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import AppSignUp from './components/AppSignUp/AppSignUp';
 import AppLogIn from './components/AppLogIn/AppLogIn';
 import Calories from './components/CalorieCounter/CalorieApp';
+import Settings from './components/SettingsApp/SettingsApp';
+import AppSettings from './components/AppSettings/AppSettings';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,7 +20,7 @@ root.render(
       <Route path="/login" element={<AppLogIn/>}></Route>
       <Route path="/" element={<AppSignUp/>}></Route>
       <Route path="/caloriecounter" element={<Calories/>}></Route>
-      <Route path="/settings" element={<Calories/>}></Route>
+      <Route path="/settings" element={<Settings/>}></Route>
     </Routes>
     </div>
   </Router>
