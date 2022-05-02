@@ -1,6 +1,7 @@
 var express = require("express")
 var app = express()
 const db = require("./database.js")
+const log = require("./database_log.js")
 var md5 = require("md5")
 
 app.use(express.urlencoded({ extended: true }));
@@ -88,7 +89,6 @@ app.post("/app/accountexists/", (req, res, next) => {
     }
   });
 
-
 // READ a list of users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users/", (req, res, next) => {	
     console.log("here");
@@ -99,6 +99,8 @@ app.get("/app/users/", (req, res, next) => {
         console.error(e)
     }
 });
+
+
 
 /*
 
@@ -132,7 +134,10 @@ app.delete("/app/delete/user/:id", (req, res) => {
 });
 */
 
-
+app.get("/app/interactions", (req, res, next) => {
+    const stmt = log.prepare("SELECT * FROM log").all();
+    res.status(200).json(stmt);
+  });
 
 // Default response for any other request
 app.use(function(req, res){

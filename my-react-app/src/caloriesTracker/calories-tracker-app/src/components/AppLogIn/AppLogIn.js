@@ -10,7 +10,7 @@ const AppLogIn = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-      axios.post("http://localhost:5000/app/accountexists/", { email: email, password: password }).then((res) => {
+      axios.post("http://localhost:5000/app/emailexists/", { email: email, password: password }).then((res) => {
           console.log("now i have done the axios");
           if (res.data == "account found!") {
             window.location.href = "./caloriecounter"; 
@@ -22,18 +22,9 @@ const AppLogIn = () => {
           else{
             alert("Wrong password!")
           }   
-            /*axios.post("http://localhost:5000/app/adduser", {
-              firstname: firstname,
-              lastname: lastname,
-              email: email,
-              birthday: birthday,
-              password: password,
-            });
-            console.log(window.location.href);
-            window.location.href = "./caloriecounter"; */
           
         });
-  }
+    }
 
   return (
     <div className = "app__login">
