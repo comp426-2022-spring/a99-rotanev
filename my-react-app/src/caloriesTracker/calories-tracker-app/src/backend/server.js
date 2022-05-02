@@ -89,6 +89,14 @@ app.post("/app/accountexists/", (req, res, next) => {
     }
   });
 
+app.post("/app/delete/", (req, res, next) => {
+    const email = req.body.email;
+    console.log(email+" is being deleted from the database!");
+    const stmt = db.prepare("DELETE FROM user WHERE email= ?");
+    const info = stmt.run(email);
+    res.status(200).json(info);
+});
+
 // READ a list of users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users/", (req, res, next) => {	
     console.log("here");
@@ -99,8 +107,6 @@ app.get("/app/users/", (req, res, next) => {
         console.error(e)
     }
 });
-
-
 
 /*
 
@@ -137,7 +143,7 @@ app.delete("/app/delete/user/:id", (req, res) => {
 app.get("/app/interactions", (req, res, next) => {
     const stmt = log.prepare("SELECT * FROM log").all();
     res.status(200).json(stmt);
-  });
+});
 
 // Default response for any other request
 app.use(function(req, res){
