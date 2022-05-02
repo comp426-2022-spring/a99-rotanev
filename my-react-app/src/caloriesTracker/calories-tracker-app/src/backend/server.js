@@ -97,6 +97,19 @@ app.post("/app/delete/", (req, res, next) => {
     res.status(200).json(info);
 });
 
+app.put("/app/update/", (req, res, next) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const birthday = req.body.birthday;
+    const password = req.body.password;
+    const stmt = db.prepare(
+      "UPDATE user SET firstname = ?, lastname = ?, email = ?, birthday = ?, password = ? WHERE email = ?"
+    );
+    const info = stmt.run(firstname, lastname, email, birthday, password, email);
+    res.status(200).json(info);
+  });
+
 // READ a list of users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users/", (req, res, next) => {	
     console.log("here");
