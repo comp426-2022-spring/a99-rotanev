@@ -1,3 +1,4 @@
+// Require all necessary packages
 "use strict";
 const Database = require('better-sqlite3');
 const db = new Database('database.db');
