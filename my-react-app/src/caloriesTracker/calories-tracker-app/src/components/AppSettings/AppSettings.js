@@ -27,13 +27,14 @@ const AppSettings = () => {
         }
         */
        });
+       alert("Name:\t" + firstname + " " + lastname + "\nEmail:\t" + email + "\nBirthday:\t" + birthday + "\nPassword:\t" + password);
        window.location.href="./settings";
       //axios.post("http://localhost:5000/app/adduser/", {firstname: firstname, lastname: lastname, email: email, birthday: birthday, password: password, oldpassword: oldpassword}
   }
 
   return (
     <div className="app__settings">
-            <div className="app__settings">
+            <div className="formbox">
               <form onSubmit={onVerifySubmitClick}>
                 <h1>Enter your email and password</h1>
                   <input type="text" placeholder="Enter Email" name="email" required/>
