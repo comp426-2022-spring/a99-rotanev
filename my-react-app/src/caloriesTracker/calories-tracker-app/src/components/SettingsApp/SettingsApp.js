@@ -26,7 +26,7 @@ const SettingsApp = () => {
   // Functions
 
   const verifyHandler = () =>{
-
+    console.log(email)
   };
 /*
   const addMealsHandler = () => {
@@ -86,14 +86,14 @@ const SettingsApp = () => {
 
   // Return
     return (
-      <div className="App">
-        <AppNavBarLogged />
-        <AppSettings verifyHandler={verifyHandler} email={email} password={password}
-        setEmail={setEmail}
-        setPassword={setPassword}/>
-
-      </div>
+        <div className="App">
+            <AppNavBarLogged />
+            <AppSettings verifyHandler={verifyHandler} email={email} password={password}
+            setEmail={setEmail}
+            setPassword={setPassword}/>
+        </div>
     );
+
 }
 
 export default SettingsApp;
