@@ -1,7 +1,6 @@
 var express = require("express")
 var app = express()
 const db = require("./database.js")
-const log = require("./database_log.js")
 var md5 = require("md5")
 
 app.use(express.urlencoded({ extended: true }));
@@ -73,8 +72,7 @@ app.post("/app/accountexists/", (req, res, next) => {
       .all();
     if (stmt[0]["COUNT"] == 0) {
         console.log("account doesn't exist");
-        alert("account doesn't exist!");
-      res.status(200).json("account doesn't exist");
+        res.status(200).json("account doesn't exist");
     } else {
         console.log("got in here");
         let stmt = db
@@ -97,18 +95,64 @@ app.post("/app/deleteuser/", (req, res, next) => {
     res.status(200).json(info);
 });
 
-app.put("/app/updateuser/", (req, res, next) => {
+app.put("/app/changeuser/", (req, res, next) => {
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const email = req.body.email;
     const birthday = req.body.birthday;
     const password = req.body.password;
-    const stmt = db.prepare(
-      "UPDATE user SET firstname = ?, lastname = ?, email = ?, birthday = ?, password = ? WHERE email = ?"
-    );
-    const info = stmt.run(firstname, lastname, email, birthday, password, email);
-    res.status(200).json(info);
-  });
+    const oldpassword = req.body.oldpassword;
+
+    let stmt = db
+      .prepare(`SELECT COUNT(*) AS COUNT FROM user WHERE email = '${email}'`)
+      .all();
+    if (stmt[0]["COUNT"] == 0) {
+        console.log("account doesn't exist");
+        res.status(200).json("account doesn't exist");
+    } 
+    else{
+        console.log("got in here");
+        let stmt = db
+        .prepare(`SELECT COUNT(*) AS COUNT FROM user WHERE email = '${email}' AND password='${oldpassword}'`)
+        .all();
+        if (stmt[0]["COUNT"] == 0) {
+            res.status(200).json("your password is invalid!");
+        }
+        else {
+            console.log("got to this point in the endpoint");
+            const stmt = db.prepare(
+                "UPDATE user SET firstname = ?, lastname = ?, email = ?, birthday = ?, password = ? WHERE email = ?"
+              );
+              const info = stmt.run(firstname, lastname, email, birthday, password, email);
+              console.log(info);
+              res.status(200).json(info);
+        }
+    }
+});
+
+app.post("/app/updateuser/", (req, res, next) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const birthday = req.body.birthday;
+    const password = req.body.password;
+    const oldpassword = req.body.oldpassword;
+/*
+        console.log("got to this point in the endpoint");
+        const stmt = db.prepare(
+            "UPDATE user SET firstname = ?, lastname = ?, email = ?, birthday = ?, password = ? WHERE email = ?"
+        );
+        const info = stmt.run(firstname, lastname, email, birthday, password, email);
+        console.log(info);
+        res.status(200).json(info);
+    */
+        console.log(email+" is being deleted from the database!");
+        const stmt = db.prepare("DELETE FROM user WHERE email= ?");
+        const info = stmt.run(email);
+        const stmt2 = db.prepare("INSERT INTO user (firstname, lastname, email, birthday, password) VALUES (?, ?, ?, ?, ?)");
+        const info2 = stmt2.run(firstname, lastname, email, birthday, password);
+        res.status(200).json(info2)
+});
 
 // READ a list of users (HTTP method GET) at endpoint /app/users/
 app.get("/app/users/", (req, res, next) => {	
@@ -120,6 +164,8 @@ app.get("/app/users/", (req, res, next) => {
         console.error(e)
     }
 });
+
+
 
 /*
 
