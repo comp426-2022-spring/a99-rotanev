@@ -22,7 +22,7 @@ if (row == undefined) {
     db.exec(sqlInit);
     console.log('Your user database has been initialized.');
 } else {
-    console.log('User atabase exists.')
+    console.log('User database exists.')
 }
 
 
