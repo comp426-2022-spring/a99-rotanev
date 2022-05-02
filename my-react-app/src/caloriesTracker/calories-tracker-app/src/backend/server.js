@@ -89,7 +89,7 @@ app.post("/app/accountexists/", (req, res, next) => {
     }
   });
 
-app.post("/app/delete/", (req, res, next) => {
+app.post("/app/deleteuser/", (req, res, next) => {
     const email = req.body.email;
     console.log(email+" is being deleted from the database!");
     const stmt = db.prepare("DELETE FROM user WHERE email= ?");
@@ -97,7 +97,7 @@ app.post("/app/delete/", (req, res, next) => {
     res.status(200).json(info);
 });
 
-app.put("/app/update/", (req, res, next) => {
+app.put("/app/updateuser/", (req, res, next) => {
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const email = req.body.email;
