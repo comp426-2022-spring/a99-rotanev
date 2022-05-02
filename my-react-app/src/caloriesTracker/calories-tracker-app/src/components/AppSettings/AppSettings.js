@@ -1,6 +1,7 @@
 import React from 'react';
 import "../../App.css";
 import axios from "axios";
+import AppNavBarLogged from "../AppNavBar/AppNavBarLogged";
 
 const AppSettings = () => {
 
@@ -34,6 +35,7 @@ const AppSettings = () => {
 
   return (
     <div className="app__settings">
+          <AppNavBarLogged/>
             <div className="formbox">
               <form onSubmit={onVerifySubmitClick}>
                 <h1>Enter your email and password</h1>

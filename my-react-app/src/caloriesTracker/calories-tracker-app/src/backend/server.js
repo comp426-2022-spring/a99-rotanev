@@ -200,7 +200,7 @@ app.delete("/app/delete/user/:id", (req, res) => {
 */
 
 app.get("/app/interactions", (req, res, next) => {
-    const stmt = log.prepare("SELECT * FROM log").all();
+    const stmt = db.prepare("SELECT * FROM accesslog").all();
     res.status(200).json(stmt);
 });
 

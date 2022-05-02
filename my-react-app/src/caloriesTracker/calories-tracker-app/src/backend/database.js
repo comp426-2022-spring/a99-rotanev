@@ -3,7 +3,7 @@ const Database = require('better-sqlite3');
 const db = new Database('database.db');
 
 let stmt=null;
-stmt = db.prepare(`SELECT name FROM sqlite_master WHERE type='table' and name='database';`);
+stmt = db.prepare(`SELECT name FROM sqlite_master WHERE type='table' and name='user';`);
 
 let row = stmt.get();
 if (row == undefined) {

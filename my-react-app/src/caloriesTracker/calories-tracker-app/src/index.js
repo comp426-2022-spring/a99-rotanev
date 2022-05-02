@@ -21,7 +21,7 @@ root.render(
       <Route path="/" element={<AppSignUp/>}></Route>
       <Route path="/caloriecounter" element={<Calories/>}></Route>
       <Route path="/settings" element={<Settings/>}></Route>
-      <Route path="/deleteusers" element={<Delete/>}></Route>
+      <Route path="/delete" element={<Delete/>}></Route>
     </Routes>
     </div>
   </Router>
