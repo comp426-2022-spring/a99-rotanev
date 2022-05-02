@@ -95,7 +95,7 @@ app.post("/app/deleteuser/", (req, res, next) => {
     res.status(200).json(info);
 });
 
-app.put("/app/changeuser/", (req, res, next) => {
+/*app.put("/app/changeuser/", (req, res, next) => {
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const email = req.body.email;
@@ -128,7 +128,7 @@ app.put("/app/changeuser/", (req, res, next) => {
               res.status(200).json(info);
         }
     }
-});
+});*/
 
 app.post("/app/updateuser/", (req, res, next) => {
     const firstname = req.body.firstname;
@@ -164,15 +164,6 @@ app.get("/app/users/", (req, res, next) => {
         console.error(e)
     }
 });
-
-app.get('/app/log/access', (req, res) => {
-    try {
-      const stmt = db.prepare('SELECT * FROM accesslog').all()
-      res.status(200).json(stmt)
-    }catch(er){
-      console.error(er)
-    }
-  });
 
   app.get("/app/error", (req, res) => {
     res.status(500)
